@@ -4,29 +4,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity" >
 
-    <EditText
-        android:id="@+id/editText1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginBottom="15dp"
-        android:layout_marginLeft="30dp"
-        android:ems="10" >
-
-        <requestFocus />
-    </EditText>
-
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/editText1"
-        android:layout_alignBottom="@+id/editText1"
-        android:layout_alignParentRight="true"
-        android:onClick="enterItem"
-        android:text="Button" />
-
     <ListView
         android:id="@+id/listView1"
         android:layout_width="match_parent"
@@ -34,5 +11,14 @@
         android:layout_above="@+id/button1"
         android:layout_centerHorizontal="true" >
     </ListView>
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="enterItem"
+        android:text="Button" />
 
 </RelativeLayout>

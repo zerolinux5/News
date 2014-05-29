@@ -14,6 +14,9 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.app.Activity;
 import android.content.Context;
@@ -97,10 +100,32 @@ public class MainActivity extends Activity {
     	}
     	
     	protected void onPostExecute(String s) {
-    		// This is executed in the UI thread.
-    		//TextView tv = (TextView) findViewById(R.id.textView1);
-    		//tv.setText(s);
-    		//tv.setVisibility(View.VISIBLE);
+    		try {
+				JSONObject jObject = new JSONObject(s);
+				JSONArray jArray = jObject.getJSONArray("sites");
+				String urlName;
+				String urlButton;
+				for (int i=0; i < jArray.length(); i++){
+					JSONObject oneObject = jArray.getJSONObject(i);
+					// Pulling items from the array
+					urlName = oneObject.getString("url");
+					urlButton = oneObject.getString("title");
+					if(urlName.equals("") || urlButton.equals("")){
+						
+					} else {
+			    		ListElement el = new ListElement();
+			    		el.textLabel = urlName;
+			    		el.buttonLabel = urlButton;
+			    		aList.add(el);
+			    		Log.d(LOG_TAG, "The length of the list now is " + aList.size());
+			    		aa.notifyDataSetChanged();
+					}
+				}
+    		
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
     	}
     	
     }
@@ -218,16 +243,6 @@ public class MainActivity extends Activity {
 	
 	public void enterItem(View v) {
 		Log.d(LOG_TAG, "The button has been pressed");
-		EditText et = (EditText) findViewById(R.id.editText1);
-		String s = et.getText().toString();
-		ListElement el = new ListElement();
-		el.textLabel = s;
-		el.buttonLabel = "b_" + s;
-		aList.add(el);
-		Log.d(LOG_TAG, "The length of the list now is " + aList.size());
-		aa.notifyDataSetChanged();
-		// Clears the entry text.
-		et.setText("");
 		startDownload(v);
 	}
 	

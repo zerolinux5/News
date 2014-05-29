@@ -108,18 +108,19 @@ public class MainActivity extends Activity {
 				for (int i=0; i < jArray.length(); i++){
 					JSONObject oneObject = jArray.getJSONObject(i);
 					// Pulling items from the array
-					urlName = oneObject.getString("url");
-					urlButton = oneObject.getString("title");
-					if(urlName.equals("") || urlButton.equals("")){
-						
-					} else {
-			    		ListElement el = new ListElement();
-			    		el.textLabel = urlName;
-			    		el.buttonLabel = urlButton;
-			    		aList.add(el);
-			    		Log.d(LOG_TAG, "The length of the list now is " + aList.size());
-			    		aa.notifyDataSetChanged();
+					try{
+						urlName = oneObject.getString("title");
+						urlButton = oneObject.getString("url");
+					} catch (JSONException e) {
+						continue;
 					}
+			    	ListElement el = new ListElement();
+			    	el.textLabel = urlName;
+			    	el.url = urlButton;
+			   		el.buttonLabel = "Read";
+			   		aList.add(el);
+			   		Log.d(LOG_TAG, "The length of the list now is " + aList.size());
+			   		aa.notifyDataSetChanged();
 				}
     		
 			} catch (JSONException e) {
@@ -171,6 +172,7 @@ public class MainActivity extends Activity {
 		ListElement() {};
 		
 		public String textLabel;
+		public String url;
 		public String buttonLabel;
 	}
 	

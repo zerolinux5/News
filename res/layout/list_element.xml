@@ -5,25 +5,23 @@
     android:layout_height="match_parent"
     android:orientation="horizontal" >
 
-    <Button
-        android:id="@+id/listButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView1"
-        android:layout_alignBottom="@+id/textView1"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="21dp"
-        android:text="Button" />
-
     <TextView
         android:id="@+id/listText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/listButton"
         android:layout_alignBottom="@+id/listButton"
-        android:layout_marginRight="50dp"
+        android:layout_alignParentLeft="true"
         android:layout_toLeftOf="@+id/listButton"
         android:text="Medium Text"
         android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <Button
+        android:id="@+id/listButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="Button" />
 
 </RelativeLayout>

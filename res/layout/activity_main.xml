@@ -19,6 +19,6 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:onClick="enterItem"
-        android:text="Button" />
+        android:text="Download" />
 
 </RelativeLayout>

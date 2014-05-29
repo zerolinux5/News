@@ -20,6 +20,7 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,16 +30,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivity extends Activity {
 	
 	private static final String LOG_TAG = "MainActivity";
 	private static final int MAX_SETUP_DOWNLOAD_TRIES = 3;
+	static final public String MYPREFS = "myprefs";
+	static final public String PREF_STRING_1 = "string_1";
 	
 	// Change this.
 	private static final String DOWNLOAD_URL = "http://luca-ucsc.appspot.com/jsonnews/default/news_sources.json";
@@ -225,8 +226,11 @@ public class MainActivity extends Activity {
 					int pos = Integer.parseInt(s);
 					aa.notifyDataSetChanged();
 					String text = aList.get(pos).url;
-					Toast toast = Toast.makeText(context, text, Toast.LENGTH_SHORT);
-					toast.show();
+					
+					// Go to second activity
+					Intent intent = new Intent(MainActivity.this, WebActivity.class);
+					intent.putExtra("Url", text);
+					startActivity(intent);
 				}
 			});
 

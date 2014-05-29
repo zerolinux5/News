@@ -33,6 +33,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
 	
@@ -100,6 +101,7 @@ public class MainActivity extends Activity {
     	}
     	
     	protected void onPostExecute(String s) {
+    		aList.clear();
     		try {
 				JSONObject jObject = new JSONObject(s);
 				JSONArray jArray = jObject.getJSONArray("sites");
@@ -221,8 +223,10 @@ public class MainActivity extends Activity {
 					// Gets the integer tag of the button.
 					String s = (String) v.getTag();
 					int pos = Integer.parseInt(s);
-					aList.remove(pos);
 					aa.notifyDataSetChanged();
+					String text = aList.get(pos).url;
+					Toast toast = Toast.makeText(context, text, Toast.LENGTH_SHORT);
+					toast.show();
 				}
 			});
 
